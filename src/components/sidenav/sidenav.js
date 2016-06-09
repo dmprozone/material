@@ -491,5 +491,7 @@ function SidenavController($scope, $element, $attrs, $mdComponentRegistry, $q) {
   self.toggle = function() { return self.$toggleOpen( !$scope.isOpen );  };
   self.$toggleOpen = function(value) { return $q.when($scope.isOpen = value); };
 
-  self.destroy = $mdComponentRegistry.register(self, $attrs.mdComponentId);
+  $attrs.$observe('mdComponentId', function(val){
+    self.destroy = $mdComponentRegistry.register(self, val);
+  });
 }
